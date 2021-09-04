@@ -6,9 +6,12 @@ namespace RootMotion.Demos {
 
 	public class PuppetBoard : MonoBehaviour {
 
-		[Tooltip("Board target Rigidbody.")] public Rigidbody target;
-		[Tooltip("Pivot Transform of the body target.")] public Transform bodyTargetPivot;
-		[Tooltip("The body target keeps the puppet upright by a SpringJoint connected to the body.")] public Transform bodyTarget;
+		[Tooltip("Board target Rigidbody.")] 
+		public Rigidbody target;
+		[Tooltip("Pivot Transform of the body target.")] 
+		public Transform bodyTargetPivot;
+		[Tooltip("The body target keeps the puppet upright by a SpringJoint connected to the body.")] 
+		public Transform bodyTarget;
 
 		private Rigidbody r;
 
