@@ -15,12 +15,16 @@ public class HandCollisions : MonoBehaviour
     
     private OVRSkeleton skeleton;
     private HandGrabber handGrabber;
+    private HandGestures handGestures;
+
+    public GameObject grabbedObj;
 
     void Start() {
         
         grabCandidates = new HashSet<Collider>();
         skeleton = GetComponent<OVRSkeleton>();
         handGrabber = GetComponent<HandGrabber>();
+        handGestures = GetComponent<HandGestures>();
 
         // Makes it so the Index collider (and others in future) don't get triggered by a hand collider
         Physics.IgnoreLayerCollision(LayerMask.NameToLayer("Body"), LayerMask.NameToLayer("HandCollider"));
@@ -33,6 +37,11 @@ public class HandCollisions : MonoBehaviour
     void Update()
     {
         InitializeIndexCollider();
+
+        if (grabbedObj != null && !handGestures.isIndexPinching)
+        {
+            indexCollider.configurableJoint.connectedBody = null;
+        }
     }
 
     public void InitializeIndexCollider()
@@ -54,6 +63,12 @@ public class HandCollisions : MonoBehaviour
     public void AddCandidate(Collider col)
     {
         grabCandidates.Add(col);
+
+        if (handGestures.isIndexPinching && col.GetComponent<ConfigurableJoint>() != null)
+        {
+            indexCollider.configurableJoint.connectedBody = col.GetComponent<Rigidbody>();
+            grabbedObj = col.gameObject;
+        }
     }
     public void RemoveCandidate(Collider col)
     {
