@@ -54,6 +54,7 @@ public class HandGestures : MonoBehaviour
     
         if (confidence == OVRHand.TrackingConfidence.High) {
 
+            //if (isIndexPinching != isIndexPinching_new) Debug.Log("isIndexPinching: "+isIndexPinching_new);
             isIndexPinching = isIndexPinching_new;
         } 
     

@@ -242,6 +242,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 576315252078236189, guid: d69bbb4dc7ec4497d8e58268b4615288, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2158827687600898628, guid: d69bbb4dc7ec4497d8e58268b4615288, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6707743687998246122, guid: d69bbb4dc7ec4497d8e58268b4615288, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8803050271682805750, guid: d69bbb4dc7ec4497d8e58268b4615288, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -289,6 +301,18 @@ PrefabInstance:
     - target: {fileID: 8803050271682805751, guid: d69bbb4dc7ec4497d8e58268b4615288, type: 3}
       propertyPath: m_Name
       value: VRHandTracking
+      objectReference: {fileID: 0}
+    - target: {fileID: 8916230363922305370, guid: d69bbb4dc7ec4497d8e58268b4615288, type: 3}
+      propertyPath: _confidenceBehavior
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8916230364002350393, guid: d69bbb4dc7ec4497d8e58268b4615288, type: 3}
+      propertyPath: _confidenceBehavior
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9016107785238043606, guid: d69bbb4dc7ec4497d8e58268b4615288, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d69bbb4dc7ec4497d8e58268b4615288, type: 3}
