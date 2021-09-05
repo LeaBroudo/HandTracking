@@ -6,14 +6,14 @@ using UnityEngine.UI;
 public class IndexCollisionDetector : MonoBehaviour
 {
 
-    private Transform transformToFollow;
-    private HandGrabber handGrabber;
-    private ConfigurableJoint indexJoint;
+    public Transform transformToFollow;
+    public ConfigurableJoint configurableJoint;
+    public HandCollisions handCollisions;
 
     // Start is called before the first frame update
     void Start()
     {
-        indexJoint = GetComponent<ConfigurableJoint>();
+        configurableJoint = GetComponent<ConfigurableJoint>();
     }
 
     // Update is called once per frame
@@ -25,35 +25,24 @@ public class IndexCollisionDetector : MonoBehaviour
     }
 
     public void SetTransformToFollow(Transform trans) {
+        print("2");
         transformToFollow = trans;
     }
 
+    public void SetCollisionCallback(HandCollisions handCols)
+    {
+        handCollisions = handCols;
+    }
+
     void OnTriggerEnter(Collider otherCollider) {
-        
+
         Debug.Log("Triggered!!");
-
-        if (otherCollider.gameObject.layer == LayerMask.NameToLayer("Interactable") && otherCollider.GetComponent<ConfigurableJoint>() != null) {
-            
-            indexJoint.connectedBody = otherCollider.GetComponent<Rigidbody>();
-        } 
-        else if (otherCollider.gameObject.layer == LayerMask.NameToLayer("UI"))  {
-            
-            Button b = otherCollider.gameObject.GetComponent<Button>();
-            
-            if (b != null) {
-                b.onClick.Invoke();
-            }
-
-        }
-
-        
+        if (handCollisions) handCollisions.AddCandidate(otherCollider);
     }
 
     void OnTriggerExit(Collider otherCollider) {
         Debug.Log("Trigger exit!!");
+        if (handCollisions) handCollisions.RemoveCandidate(otherCollider);
     }
 
-    public void SetCollisionCallback(HandGrabber _handGrabber) {
-        handGrabber = _handGrabber;
-    }
 }

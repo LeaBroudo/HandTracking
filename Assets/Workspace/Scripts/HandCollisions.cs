@@ -2,47 +2,58 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using OculusSampleFramework;
+using UnityEngine.UI;
 
 [System.Serializable]
-public class PokeEvent : UnityEvent<GameObject> {}
 
 public class HandCollisions : MonoBehaviour
 {
-    private OVRSkeleton skeleton;
 
+    public IndexCollisionDetector indexCollider;
+    private HashSet<Collider> grabCandidates;
+    
+    private OVRSkeleton skeleton;
     private HandGrabber handGrabber;
 
-    public GameObject indexColliderObj;
- 
     void Start() {
         
-        Physics.IgnoreLayerCollision(7, 7);
-
+        grabCandidates = new HashSet<Collider>();
         skeleton = GetComponent<OVRSkeleton>();
         handGrabber = GetComponent<HandGrabber>();
-        
-        AddCollidersToHands();
-  
+        InitializeIndexCollider();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        InitializeIndexCollider();
     }
 
-    public void AddCollidersToHands() {
-
-        List<Collider> grabVolumes = new List<Collider>();
-
-        // Add collider to tip of index finger
-        foreach(OVRBone bone in skeleton.Bones) {
-            if (bone.Id == OVRSkeleton.BoneId.Hand_IndexTip) {
-                
-                IndexCollisionDetector detector = indexColliderObj.GetComponent<IndexCollisionDetector>();
-                detector.SetTransformToFollow(bone.Transform);
-                detector.SetCollisionCallback(handGrabber);
+    public void InitializeIndexCollider()
+    {
+        if (indexCollider.handCollisions == null || indexCollider.transformToFollow == null)
+        {
+            // Add collider to tip of index finger
+            foreach (OVRBone bone in skeleton.Bones)
+            {
+                if (bone.Id == OVRSkeleton.BoneId.Hand_IndexTip)
+                {
+                    print("1");
+                    indexCollider.SetTransformToFollow(bone.Transform);
+                    indexCollider.SetCollisionCallback(this.GetComponent<HandCollisions>());
+                }
             }
         }
     }
+
+    public void AddCandidate(Collider col)
+    {
+        grabCandidates.Add(col);
+    }
+    public void RemoveCandidate(Collider col)
+    {
+        grabCandidates.Remove(col);
+    }
+
 }
