@@ -16,33 +16,13 @@ public class HandCollisions : MonoBehaviour
  
     void Start() {
         
-        Physics.IgnoreLayerCollision(7, 7);
-
         skeleton = GetComponent<OVRSkeleton>();
-        handGrabber = GetComponent<HandGrabber>();
-        
-        AddCollidersToHands();
-  
+        handGrabber = GetComponent<HandGrabber>();  
     }
 
     // Update is called once per frame
     void Update()
     {
         
-    }
-
-    public void AddCollidersToHands() {
-
-        List<Collider> grabVolumes = new List<Collider>();
-
-        // Add collider to tip of index finger
-        foreach(OVRBone bone in skeleton.Bones) {
-            if (bone.Id == OVRSkeleton.BoneId.Hand_IndexTip) {
-                
-                IndexCollisionDetector detector = indexColliderObj.GetComponent<IndexCollisionDetector>();
-                detector.SetTransformToFollow(bone.Transform);
-                detector.SetCollisionCallback(handGrabber);
-            }
-        }
     }
 }

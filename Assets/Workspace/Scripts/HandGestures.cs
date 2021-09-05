@@ -53,7 +53,7 @@ public class HandGestures : MonoBehaviour
         //Debug.Log(skeleton.GetSkeletonType()+"\nisIndexFingerPinching: "+isIndexPinching_new+"\nindexFingerPinchStrength: "+indexFingerPinchStrength +"\nconfidence: "+confidence);
     
         if (confidence == OVRHand.TrackingConfidence.High) {
-
+            if (isIndexPinching != isIndexPinching_new) Debug.Log("isIndexPinching: " + isIndexPinching_new);
             isIndexPinching = isIndexPinching_new;
         } 
     
@@ -72,11 +72,11 @@ public class HandGestures : MonoBehaviour
             //Debug.Log("HandPointingStarted");
         } 
         else if (!isHandPointing_new && isHandPointing) {
-            //Debug.Log("HandPointingEnded");
+           //Debug.Log("HandPointingEnded");
         } 
         
         if (isHandPointing_new) {
-            //Debug.Log("HandIsPointing");
+           //Debug.Log("HandIsPointing");
         }
 
         isHandPointing = isHandPointing_new;
