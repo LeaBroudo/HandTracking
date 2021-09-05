@@ -21,19 +21,19 @@ public class HandPresence : MonoBehaviour
         
     }
 
-    public void ShowHandPrefab() {
+    // public void ShowHandPrefab() {
 
-        if (!handRenderer.enabled) {
-            handRenderer.enabled = true; 
-        }
-    }
+    //     if (!handRenderer.enabled) {
+    //         handRenderer.enabled = true; 
+    //     }
+    // }
 
-    public void HideHandPrefab() {
+    // public void HideHandPrefab() {
                     
-        if (handRenderer.enabled) {
-            handRenderer.enabled = false; 
-        }
-    }
+    //     if (handRenderer.enabled) {
+    //         handRenderer.enabled = false; 
+    //     }
+    // }
 
     public bool isHandShown() {
         return handRenderer.enabled;

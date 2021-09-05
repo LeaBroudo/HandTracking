@@ -53,7 +53,12 @@ public class HandGestures : MonoBehaviour
         //Debug.Log(skeleton.GetSkeletonType()+"\nisIndexFingerPinching: "+isIndexPinching_new+"\nindexFingerPinchStrength: "+indexFingerPinchStrength +"\nconfidence: "+confidence);
     
         if (confidence == OVRHand.TrackingConfidence.High) {
+<<<<<<< HEAD
             if (isIndexPinching != isIndexPinching_new) Debug.Log("isIndexPinching: " + isIndexPinching_new);
+=======
+
+            //if (isIndexPinching != isIndexPinching_new) Debug.Log("isIndexPinching: "+isIndexPinching_new);
+>>>>>>> 78d06a634e54bfaea3f549f9b275607d22ef384b
             isIndexPinching = isIndexPinching_new;
         } 
     
