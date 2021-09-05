@@ -21,6 +21,11 @@ public class HandCollisions : MonoBehaviour
         grabCandidates = new HashSet<Collider>();
         skeleton = GetComponent<OVRSkeleton>();
         handGrabber = GetComponent<HandGrabber>();
+
+        // Makes it so the Index collider (and others in future) don't get triggered by a hand collider
+        Physics.IgnoreLayerCollision(LayerMask.NameToLayer("Body"), LayerMask.NameToLayer("HandCollider"));
+        Physics.IgnoreLayerCollision(LayerMask.NameToLayer("HandCollider"), LayerMask.NameToLayer("HandCollider"));
+
         InitializeIndexCollider();
     }
 
@@ -39,7 +44,6 @@ public class HandCollisions : MonoBehaviour
             {
                 if (bone.Id == OVRSkeleton.BoneId.Hand_IndexTip)
                 {
-                    print("1");
                     indexCollider.SetTransformToFollow(bone.Transform);
                     indexCollider.SetCollisionCallback(this.GetComponent<HandCollisions>());
                 }
